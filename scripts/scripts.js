@@ -1,19 +1,17 @@
-const toggle = document.querySelector(".toggle");
-const menu = document.querySelector(".menu");
+$(function(){
+	$('.nav__icon').on('click', function() {
+		$(this).toggleClass('active');
+		$('nav ul').slideToggle();
+	});
 
-
-/* Toggle mobile menu */
-function toggleMenu() {
-  if (menu.classList.contains("active")) {
-    menu.classList.remove("active");
-    toggle.querySelector("a").innerHTML = "<i class='fas fa-bars'></i>";
-  } else {
-    menu.classList.add("active");
-    toggle.querySelector("a").innerHTML = "<i class='fas fa-times'></i>";
-  }
-}
-
-
-/* Event Listeners */
-toggle.addEventListener("click", toggleMenu, false);
-
+	$(window).on('load resize',function(){
+		var w = $(window).width();
+		var h = $(window).height();
+		var x = 700;
+		if (w >= x) {
+			$('nav ul').css({ display: 'flex',height: 'auto' });
+		}else {
+			$('nav ul').css({ display: 'none',height: h + 'px'});
+		}
+	});
+});
